@@ -1,0 +1,26 @@
+<!DOCTYPE HTML>
+<head>
+  <title>Vue Sample</title>
+</head>
+<body>
+  <div id="app">
+    <!-- v-bind propsdata="message"는 상위 컴포넌트의 message 속성 값인 Hello 텍스트를,
+    하위 컴포넌트의 'propsdata'로 전달 -->
+    <child-component v-bind:propsdata="message"></child-component>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+  Vue.component('child-component',{
+    //1번 : child-component의 내용에 props 속성으로 propsdata로 정의
+    props: ['propsdata'],
+    template: '<p>{{ propsdata }}</p>',
+  });
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue! passed from Parent component'
+    }
+  });
+  </script>
+</body>
