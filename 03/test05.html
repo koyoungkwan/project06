@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<head>
+  <title>Vue Sample</title>
+</head>
+<body>
+  <div id="app">
+    <my-component1></my-component1>
+    <my-component2></my-component2>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+      var cmp1 ={
+        template: '<div>첫번째 지역 컴포넌트 : {{ cmp1Date }}</div>',
+        data: function(){
+          return {
+            cmp1Date: 100
+          }
+        }
+      };
+      var cmp2 ={
+        template: '<div>두번째 지역 컴포넌트 : {{ cmp2Date }}</div>',
+        data: function(){
+          return {
+            cmp2Date: cmp1.data.cmp1Data
+          }
+        }
+      };
+      new Vue({
+        el: '#app',
+        //지역 컴포넌트
+        components: {
+          'my-component1': cmp1,
+          'my-component2': cmp2
+        }
+      });
+  </script>
+</body>
