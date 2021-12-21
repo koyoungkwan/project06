@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<head>
+  <title>Vue Sample</title>
+</head>
+<body>
+  <div id="app">
+    <!-- 3번 : v-bind propsdata="message"는 상위 컴포넌트의 message 속성 값인 Hello 텍스트를,
+    하위 컴포넌트의 'propsdata'로 전달 -->
+    <child-component v-on:show-log="printText"></child-component>
+  </div>
+
+  <script src="../js/vue.js"></script>
+  <script>
+  Vue.component('child-component',{
+    //1번 : [show] 버튼을 클릭하면 클릭 이벤트 v-on:click=howLog에 따라 showLog() 매서드가 실행됨
+    template: '<button v-on:click="showLog">show</button>',
+    methods:{
+      showLog: function(){
+    //2번 : this.$emit('show-log')가 실행되면서 show-log 이벤트가 실행(보냄)
+        this.$emit('show-log');
+      }
+    }
+  });
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue! passed from Parent component'
+    },
+    methods:{
+      // 4번 : 콘솔에 printText()를 실행
+      printText: function(){
+        console.log('received an event');
+      }
+    }
+  });
+  </script>
+</body>
