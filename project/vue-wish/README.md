@@ -1,4 +1,4 @@
-# first-templaye
+# first-template
 
 > A.Vue.js My first project
 
